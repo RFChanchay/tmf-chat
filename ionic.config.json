@@ -1,0 +1,7 @@
+{
+  "name": "chat-indi",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
