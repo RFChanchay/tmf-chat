@@ -1,0 +1,67 @@
+<ion-content class="ion-padding">
+  <ion-spinner name="crescent" *ngIf="isLoading"></ion-spinner>
+  
+  <div class="logo-container">
+    <img src="../../../../assets/icon/favicon.png" alt="Logo de la aplicación">
+  </div>
+  
+
+  <div class="card">
+    <div class="card-body">
+      <h2 class="text-title"><b>Ingresa</b></h2>
+      <form [formGroup]="form">
+        <div class="form-group spaced">
+          
+          <input type="mail" class="form-control" id="usermail" placeholder="Email" formControlName="email">
+          <ion-text class="ion-text-left" color="danger" *ngIf="!form.get('email').valid && form.get('email').touched">
+            <p class="error">*Ingrese un correo válido</p>
+          </ion-text>
+        </div>
+        
+        <div class="form-group spaced">
+          
+          <input formControlName="password"  [type]="isTypePassword ? 'password' : 'text'"  class="form-control" id="password" placeholder="Contraseña">
+          <ion-text 
+          class="ion-text-left"
+          color="danger"
+          *ngIf="!form.get('password').valid && form.get('password').touched">
+          <p 
+            class="error" 
+            *ngIf="form.get('password').invalid && form.get('password').errors['required']">
+            *Ingresa tu Contraseña
+          </p>
+          <p 
+            class="error" 
+            *ngIf="form.get('password').dirty">
+            *Contraseña no Válida
+          </p>
+        </ion-text>
+        <a class="text-right forget-pass">¿Olvidaste tu contraseña?</a>
+          <ion-icon (click)="onChange()"
+          [name]="isTypePassword ? 'lock-closed-outline' : 'lock-open-outline'" 
+          slot="end" 
+          [color]="isTypePassword ? 'medium' : 'primary'">
+
+          </ion-icon>
+        </div>
+        <button type="submit" (click)="onSubmit()" class="btn btn-primary custom-btn">Iniciar sesión</button>
+      </form>
+    </div>
+  </div>
+
+  
+
+  
+</ion-content>
+<ion-footer>
+  <div class="the-register">
+    <p class="text-center">
+      No tienes una cuenta? <a routerLink="/login/register">
+        Regístrate ahora
+      </a>
+    </p>
+  </div>
+  <p class="text-center">
+    © 2023 ChatBui. Elaborado por Rafch17   
+  </p>
+</ion-footer>

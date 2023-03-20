@@ -1,0 +1,70 @@
+<ion-content class="ion-padding">
+  <ion-spinner name="crescent" *ngIf="isLoading"></ion-spinner>
+  <div class="logo-container">
+    <img src="../../../../assets/icon/favicon.png" alt="Logo de la aplicación">
+  </div>
+  
+
+  <div class="card">
+    <div class="card-body">
+      <h2 class="text-title"><b>Registrate</b></h2>
+      <form [formGroup]="signupForm">
+        <div class="form-group spaced">
+          
+          <input formControlName="username"  type="text" class="form-control" id="username" placeholder="Nombre de Usuario">
+          <ion-text 
+          class="ion-text-left"
+          color="danger"
+          *ngIf="!signupForm.get('username').valid && signupForm.get('username').touched">
+        <p class="error">*Ingresa un Nombre de Usuario</p>
+      </ion-text>
+        </div>
+        <div class="form-group spaced">
+          
+          <input formControlName="email"  type="mail" class="form-control" id="usermail" placeholder="Email">
+          <ion-text 
+        class="ion-text-left"
+        color="danger"
+        *ngIf="!signupForm.get('email').valid && signupForm.get('email').touched">
+        <p class="error">*Ingresa un Correo Válido</p>
+      </ion-text>
+        </div>
+        <div class="form-group spaced">
+          
+          
+          <input formControlName="password" 
+          [type]="isTypePassword ? 'password' : 'text'" class="form-control" id="password" placeholder="Contraseña">
+          <ion-text 
+            class="ion-text-left"
+            color="danger"
+            *ngIf="!signupForm.get('password').valid && signupForm.get('password').touched">
+            <p 
+              class="error" 
+              *ngIf="signupForm.get('password').invalid && signupForm.get('password').errors['required']">
+              *Ingresa tu contraseña
+            </p>
+            <p 
+              class="error" 
+              *ngIf="signupForm.get('password').dirty">
+              *La contraseña debe tener minimo 8 caracteres
+            </p>
+        </ion-text>
+        </div>
+        <button type="submit" class="btn btn-primary custom-btn" (click)="onSubmit()">Registrate</button>
+      </form>
+    </div>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <div class="the-register">
+    <p class="text-center">
+      Ya tienes tu cuenta? <a routerLink="/login/">
+        Ingresa Ahora
+      </a>
+    </p>
+  </div>
+  <p class="text-center">
+    © 2023 ChatBui. Elaborado por Rafch17   
+  </p>
+</ion-footer>
