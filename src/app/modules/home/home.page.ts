@@ -195,7 +195,7 @@ export class HomePage implements OnInit {
     await actionSheet.present();
 
     // const { data } = await actionSheet.onDidDismiss();
-    // console.log('onDidDismiss', data);
+    // console.log('onDidDismiss', data);xd
   }
 
   async takePhoto(sourceType: number) {
