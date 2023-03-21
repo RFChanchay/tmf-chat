@@ -35,3 +35,26 @@ ion-content {
         }
     }
 }
+ion-avatar {
+    width: 150px;
+    height: 150px;
+    border: 4px solid #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  }
+  
+  .preview {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .fallback {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: #e0e0e0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 500;
+  }

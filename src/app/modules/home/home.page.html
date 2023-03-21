@@ -22,26 +22,44 @@
 </ion-header>
 
 <ion-content>
-  <ion-list *ngIf="segment == 'chats' && (chatRooms) as rooms">
-
-
-
-    <ion-item detail *ngFor="let item of rooms" (click)="getChat(item)" [detail]="true">
-      <ion-avatar slot="start">
-        <img src="{{item?.photo}}" />
+  <ng-container *ngIf="segment == 'chats' && (chatRooms|async) as rooms">
+    <ion-list *ngIf="rooms?.length > 0" >
+      <ion-item  *ngFor="let item of rooms" (click)="getChat(item)" [detail]="true">
+        <ng-container *ngIf="(item?.user|async) as user">
+          <ion-avatar slot="start">
+            <img [src]="getUser(user)?.photo" />
+          </ion-avatar>
+          <ion-label>
+            {{getUser(user)?.name}}
+            <p>
+              
+            </p>
+          </ion-label>
+          
+        </ng-container>
+        
+      </ion-item>
+    </ion-list>
+  </ng-container>
+  <ng-container *ngIf="segment == 'settings'">
+    <div class="preview">
+      <ion-avatar (click)="changeImage()">
+        <img *ngIf="profile?.photo; else placheolder_avatar;" [src]="profile.photo" />
+        <ng-template #placheolder_avatar>
+          <div class="fallback">
+            <p>Select avatar</p>
+          </div>
+        </ng-template>
       </ion-avatar>
-      <ion-label>
-        {{item?.name}}
-        <p>
-          <ion-text>
-            message
-          </ion-text>
-        </p>
-      </ion-label>
-      <ion-text slot="end" color="medium">10:00 AM</ion-text>
-    </ion-item>
+    </div>
+  </ng-container>
 
-  </ion-list>
+  <ng-container *ngIf="segment == 'status'">
+    <div>
+      hola mundo 2
+    </div>
+  </ng-container>
+
 
 
 
@@ -57,7 +75,7 @@
           </ion-buttons>
         </ion-toolbar>
       </ion-header>
-      <ion-content color="ligth" *ngIf="users as users$">
+      <ion-content color="ligth" *ngIf="(users|async) as users$">
         <ion-list class="ion-margin-top" [style.background]="'transparent'" lines="none">
           <app-user-list *ngFor="let item of users$" [item]="item" (onClick)="startChat($event)"></app-user-list>
         </ion-list>
@@ -73,15 +91,17 @@
   <ion-segment  [value]="segment"  (ionChange)="onSegmentChanged($event)">
     <ion-segment-button value="status">
       <ion-icon name="sync-circle-outline"></ion-icon>
-      <ion-label>Status</ion-label>
+      <ion-label>Estados
+        
+      </ion-label>
     </ion-segment-button>
     <ion-segment-button value="chats">
       <ion-icon name="chatbubble-outline"></ion-icon>
       <ion-label>Chats</ion-label>
     </ion-segment-button>
-    <ion-segment-button value="calls">
-      <ion-icon name="call-outline"></ion-icon>
-      <ion-label>Calls</ion-label>
+    <ion-segment-button value="settings">
+      <ion-icon name="construct-outline"></ion-icon>
+      <ion-label>Configuracíon</ion-label>
     </ion-segment-button>
   </ion-segment>
 

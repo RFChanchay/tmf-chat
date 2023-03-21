@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "chat-widget-90bae"
+  },
+  "targets": {
+    "chat-widget-90bae": {
+      "hosting": {
+        "app": [
+          "chat-widget-90bae"
+        ]
+      }
+    }
   }
 }
