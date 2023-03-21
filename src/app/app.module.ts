@@ -13,6 +13,8 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { Capacitor } from '@capacitor/core';
 import { provideMessaging,getMessaging } from '@angular/fire/messaging';
 import { provideStorage,getStorage } from '@angular/fire/storage';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import {Camera} from '@ionic-native/camera/ngx'
 //import { ServiceWorkerModule } from '@angular/service-worker';
 //import { Camera } from '@capacitor/camera';
 
@@ -22,7 +24,7 @@ import { provideStorage,getStorage } from '@angular/fire/storage';
   imports: [BrowserModule, 
     IonicModule.forRoot(), 
     AppRoutingModule,
-    //Camera,
+    ServiceWorkerModule.register('combined-sw.js',{enabled:environment.production}),
     provideFirebaseApp(() => initializeApp(environment.firebase)), 
     //provideAuth(() => getAuth()), 
     provideAuth(()=>{
@@ -40,7 +42,7 @@ import { provideStorage,getStorage } from '@angular/fire/storage';
     
     ],
     
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy,  },Camera],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

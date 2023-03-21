@@ -52,6 +52,17 @@
         </ng-template>
       </ion-avatar>
     </div>
+    <div align="right" class="image">
+        <ion-fab vertical="top" horizontal="right">
+          <ion-fab-button (click)="takePicture()">
+            <ion-icon color="white" name="create-outline"></ion-icon>
+          </ion-fab-button>
+        </ion-fab>
+        <ion-avatar>
+          <!-- <img [src]="selectedImage ? selectedImage.webPath : 'assets/imgs/user.png'" /> -->
+          <img [src]="selectedImage ? selectedImage : 'assets/icon/favicon.png'" />
+        </ion-avatar>
+      </div>
   </ng-container>
 
   <ng-container *ngIf="segment == 'status'">

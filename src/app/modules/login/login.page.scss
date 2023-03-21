@@ -49,3 +49,24 @@
   border-left: 0;
   border-bottom: 2px solid var(--ion-color-primary);
   }
+
+  ion-header {
+    ion-toolbar {
+        --background: transparent;
+    }
+}
+ion-row {
+    ion-img {
+        height: 9vh;
+        width: 9vh;
+        margin-bottom: 2vh;
+    }
+    ion-label, p {
+        font-size: 1.1rem;
+        font-weight: bold;
+        color: var(--ion-color-white);
+    }
+}
+.logo {
+    margin: 0 0 0 5vh;
+}
